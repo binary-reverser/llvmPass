@@ -16,7 +16,7 @@ namespace {
 			for(blkIter=L->block_begin();blkIter!=L->block_end();++blkIter){
 				numBlocks++;
 			}
-			errs()<<"Loop level"<<nest<<" has "<<numBlocks<<" blocks\n";
+			errs()<<"* Loop level"<<nest<<" has "<<numBlocks<<" blocks\n";
 			std::vector<Loop*> subLoops = L->getSubLoops();
 			Loop::iterator j, f;
 			for(j=subLoops.begin(),f=subLoops.end();j!=f;++j)
@@ -25,7 +25,7 @@ namespace {
 		}
 
 		bool runOnFunction(Function &F) override {
-			errs()<<"Function: "<<F.getName()<<'\n';
+			errs()<<"* Function: "<<F.getName()<<'\n';
 			LoopInfo &LI = getAnalysis<LoopInfoWrapperPass>().getLoopInfo();
 			auto Loops = LI.getLoopsInPreorder();
 			for(Loop *L:Loops)
